@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<!--<header class="mui-bar mui-bar-nav">-->
+<!--<h1 class="mui-title">代理区</h1>-->
+<!--<img class="kf_img" src="images/wx_ma.png" alt=""/>-->
+<!--</header>-->
+<div id="box" class="mui-content">
+    <div class="user_box">
+        <div class="user_top">
+            <img src="images/user.png" alt=""/>
+
+            <div class="user_name">
+                <p>成都金铠锐网络</p>
+                <p>县级代理</p>
+            </div>
+            <!--<div class="user_name">-->
+                <!--<p style="line-height: 1.47rem;margin: 0">立即登录</p>-->
+            <!--</div>-->
+        </div>
+        <div class="mon_detail">
+            <div @click="href">2000.00<br/><span>余额</span></div>
+            <div>2000.00<br/><span>利润</span></div>
+            <div>2000.00<br/><span>业务补贴</span></div>
+            <div>2000.00<br/><span>JBC</span></div>
+        </div>
+    </div>
+    <div class="user_content"><a href="user_info.html">
+        <div class="user_list">
+            <div class="row fles_align"><img src="images/user1.png" alt="">
+                我的资料
+            </div>
+            <img src="images/next.png" alt=""></div>
+    </a> <a href="order_list.html">
+        <div class="user_list">
+            <div class="row fles_align"><img src="images/user2.png" alt="">
+                我的订单
+            </div>
+            <img src="images/next.png" alt=""></div>
+    </a> <a href="agent_buy.html">
+        <div class="user_list">
+            <div class="row fles_align"><img src="images/user3.png" alt="">
+                代售中心
+            </div>
+            <img src="images/next.png" alt=""></div>
+    </a> <a href="extend.html">
+        <div class="user_list">
+            <div class="row fles_align"><img src="images/user4.png" alt="">
+                我的团队
+            </div>
+            <img src="images/next.png" alt=""></div>
+    </a><a href="help.html">
+        <div class="user_list" style="border: none;">
+            <div class="row fles_align"><img src="images/user5.png" alt="">
+                关于我们
+            </div>
+            <img src="images/next.png" alt=""></div>
+    </a>
+    </div>
+    <button @click="login_out" type="button" class="mui-btn sub bg_w red" style="width: 100%">退出登录</button>
+    <foots ac3="true"></foots>
+    <!--提示-->
+    <div class="alert alert3">
+        <div class="alert_xz">
+            <div class="a_top">温馨提示</div>
+            <div class="a_content">
+                <p>您确定要退出吗？</p>
+            </div>
+            <div class="a_btn">
+                <button @click="cancle" class="btn_c">取消</button> <button @click="sure" class="btn_s">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script src="js/conmon.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {},
+        mounted: function () {
+
+        },
+        methods: {
+            href:function(){
+                window.location.href = 'money.html';
+            },
+            login_out:function(){
+                $('.alert3').show()
+            },
+            cancle:function(){
+                $('.alert').fadeOut();
+            },
+            sure:function(){
+
+            }
+        }
+    })
+</script>
+</html>

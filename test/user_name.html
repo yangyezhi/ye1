@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link href="css/mui.picker.css" rel="stylesheet" />
+    <link href="css/mui.poppicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">修改昵称</h1>
+    <button class="mui-btn-link mui-pull-right">保存</button>
+</header>
+<div id="box" class="mui-content">
+    <div class="mui-input-row bg_w" style="margin-top: 0.27rem">
+        <input style="width: 100%;border-left: none;border-right: none;" v-model="name" type="text" class="mui-input-clear pad" placeholder="请输入昵称">
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/conmon.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+
+    new Vue({
+        el:'#box',
+        data:{
+            name:'555'
+        },
+        mounted:function(){
+
+        },
+        methods:{
+
+        }
+    })
+
+</script>
+</html>

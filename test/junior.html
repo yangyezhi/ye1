@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+    <style>
+
+    </style>
+</head>
+<body class="bg_w">
+<header class="mui-bar mui-bar-nav bg_red">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left white"></a>
+
+    <h1 class="mui-title white">邀请新人</h1>
+</header>
+<div id="box" class="mui-content xj_bg" v-cloak="">
+    <p id="name">用户名：{{name}}</p>
+    <img class="xi_ma" v-bind:src="ewm" alt=""/>
+    <p id="tips">新生态 新电商</p>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            ewm:'',
+            name:''
+        },
+        mounted:function(){
+            var that = this;
+            that.$http.get(
+                    address+'Index/Extend/get_ewm',
+                    {params: {token:session}})
+                    .then(function(res){
+                        console.log(res.body)
+                        that.ewm = res.body.msg.tg_ewm;
+                        that.name = res.body.msg.nickname;
+                    });
+        }
+    })
+
+</script>
+</html>

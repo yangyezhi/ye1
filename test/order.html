@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">填写订单</h1>
+</header>
+<div id="box" class="mui-content pad_bot">
+    <ul class="mui-table-view mui-table-view-chevron list">
+        <li class="mui-table-view-cell mui-media">
+            <!--<a href="address.html" class="mui-navigate-right">请添加收货地址</a>-->
+            <a href="address.html" class="mui-navigate-right">
+                <span class="ad_per"><span>收货人：金铠锐网络科技有限公司</span> <span>18888888888</span></span>
+                <span class="ad_ad">收货地址：四川省成都市双流区海港广场13座四川省成都市双流区海港广场13座</span>
+            </a>
+        </li>
+    </ul>
+    <div class="order_detail">
+        <div class="order_top">
+            <img src="images/wx_ma.png" alt=""/>
+            <div class="order_t">
+                <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                <p>¥1000.00</p>
+            </div>
+        </div>
+        <p class="order_end pad">共1件商品  总额：<span class="red">¥1000.00</span></p>
+    </div>
+    <button @click="pay" class="btn wids">立即支付</button>
+    <!--底部弹框-->
+    <div class="alert alert1">
+        <div class="alert_pay alert_box">
+            <p class="p_tit pad">余额支付</p>
+            <p @click="pay_mon" class="p_mon pad"><img src="images/wx_ma.png" alt=""/>余额（剩1500.00元）</p>
+        </div>
+        <button @click="cancle" class="alert_pay cancle">取消</button>
+    </div>
+    <!--交易密码输入-->
+    <div class="alert alert2">
+        <div class="pwd_box">
+            <p class="pwd_tit">请输入交易密码<span @click="cancle" class="mui-icon mui-icon-closeempty close"></span></p>
+            <p class="pwd_mon">将扣除余额1000.00元</p>
+            <div class="pwd_boxs">
+                <input class="pwd_in" type="password"/>
+                <input class="pwd_in" type="password"/>
+                <input class="pwd_in" type="password"/>
+                <input class="pwd_in" type="password"/>
+                <input class="pwd_in" type="password"/>
+                <input class="pwd_in" type="password"/>
+            </div>
+        </div>
+    </div>
+    <!--提示-->
+    <div class="alert alert3">
+        <div class="alert_xz">
+            <div class="a_top">温馨提示</div>
+            <div class="a_content">
+                <p class="red">余额不足</p>
+                <p>现在去充值吧</p>
+            </div>
+            <div class="a_btn">
+                <button @click="cancle" class="btn_c">取消</button> <button @click="sure" class="btn_s">确定</button>
+            </div>
+        </div>
+    </div>
+    <button id="aa">ss</button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+
+    new Vue({
+        el:'#box',
+        data:{
+
+        },
+        mounted:function(){
+
+
+        },
+        methods:{
+            pay:function(){
+                $('.alert1').fadeIn();
+            },
+            cancle:function(){
+                $('.alert').fadeOut();
+            },
+            pay_mon:function(){
+                $('.alert1').fadeOut();
+                $('.alert2').fadeIn();
+                window.location.href = 'suc.html';
+            },
+            sure:function(){
+                window.location.href = 'login_pwd.html';
+            }
+        }
+    })
+    $(document).ready(function() {
+        var txts = $(".pwd_in");
+        for (var i = 0; i < txts.length; i++) {
+            var t = txts[i];
+            t.index = i;
+            t.setAttribute("readonly", true);
+            t.onkeyup = function() {
+                this.value = this.value.replace(/^(.).*$/, '$1');
+                var next = this.index + 1;
+                if (next > txts.length - 1) return;
+                txts[next].removeAttribute("readonly");
+                txts[next].focus();
+            }
+        }
+        txts[0].removeAttribute("readonly");
+    });
+    $('#aa').click(function(){
+        var btnArray = ['忘记密码', '重试'];
+        mui.confirm('交易密码错误，请重试','', btnArray, function(e) {
+            if (e.index == 1) {
+
+            } else {
+               window.location.href = 'pwd_find.html';
+            }
+        })
+    })
+</script>
+</html>

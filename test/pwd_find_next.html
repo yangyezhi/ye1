@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">新密码</h1>
+</header>
+<div id="box" class="mui-content">
+    <div class="mui-input-group" style="margin-top: 0.3rem">
+        <div class="mui-input-row">
+            <label>新密码</label>
+            <input v-model="pwd1" type="password" class="mui-input-clear" placeholder="请输入6位以上密码">
+        </div>
+        <div class="mui-input-row">
+            <label>确认密码</label>
+            <input v-model="pwd2" type="password" class="mui-input-clear" placeholder="请再次输入密码">
+        </div>
+    </div>
+    <button @click="sub" type="button" class="mui-btn sub">
+        完成
+    </button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            pwd1:'',
+            pwd2:''
+        },
+        methods:{
+            sub:function(){
+                var that = this;
+                if(this.pwd1 == ''||this.pwd2 == ''){
+                    mui.toast('请完善资料！');
+                }else if(!isSix(this.pwd1)||!isSix(this.pwd2)){
+                    mui.toast('密码格式错误！');
+                }else if(this.pwd1 != this.pwd2){
+                    mui.toast('两次密码不一致');
+                }else{
+                    that.$http.post(
+                            address+'Index/Login/editPwd',
+                            {password:that.pwd1,
+                                repassword:that.pwd2,
+                                token:session
+                            },
+                            {emulateJSON:true})
+                            .then(function(res){
+                                console.log(res.body)
+                                mui.toast(res.body.msg);
+                                if(res.body.code == 1000){
+                                    setTimeout(function(){
+                                        window.location.href = 'index.html';
+                                    },1000)
+                                }
+                            });
+                }
+            }
+        }
+    })
+
+</script>
+</html>

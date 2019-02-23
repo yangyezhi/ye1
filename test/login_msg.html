@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">短信登录</h1>
+</header>
+<div id="box" class="mui-content">
+    <div class="mui-input-group" style="margin-top: 0.3rem">
+        <div class="mui-input-row">
+            <label>手机号码</label>
+            <input v-model="pho" type="number" class="mui-input-clear" placeholder="请输入手机号码">
+        </div>
+        <div class="mui-input-row positive">
+            <label>验证码</label>
+            <input v-model="yzm" type="number" placeholder="请输入数字验证码">
+            <span v-cloak @click="get_yzm" id="yzm">{{get_yz}}</span>
+        </div>
+    </div>
+    <a href="login_pwd.html" class="pwd_href pad">密码登录</a>
+    <button @click="login" type="button" class="mui-btn sub">
+        登录
+    </button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            pho:'',
+            yzm:'',
+            get_yz:'获取验证码',
+            flag:true,
+            second:59
+        },
+        mounted:function(){
+//            console.log(window.localStorage)
+            if(window.localStorage){
+                this.pho = window.localStorage.pho;
+            }
+        },
+        methods:{
+            get_yzm:function(){
+                var that = this;
+                if(that.pho == ''||!isPoneAvailable(this.pho)){
+                    mui.toast('请正确输入手机号码！');
+                }else{
+                    if(that.flag){
+                        that.flag = false;
+                        that.$http.get(
+                                address+'Index/Register/getCode',
+                                {params: {phone:that.pho}}
+                        )
+                                .then(function(res){
+//                                    console.log(res.body)
+                                    if(res.body.code != 1000){
+                                        mui.toast(res.body.msg);
+                                    }
+                                });
+                        that.second--;
+                        that.get_yz = that.second+'s后重新发送'
+                        var fun = setInterval(function(){
+                            that.second--;
+                            that.get_yz = that.second+'s后重新发送';
+                            if(that.second == 0){
+                                clearInterval(fun);
+                                that.second = 5;
+                                that.get_yz = '重新获取';
+                                that.flag = true;
+                            }
+                        },1000);
+                    }
+
+                }
+            },
+            login:function(){
+                console.log(this.yzm)
+                console.log(this.pho)
+                var that = this;
+                if(this.pho == ''||this.yzm == ''){
+                    mui.toast('请完善资料！');
+                }else if(!isPoneAvailable(this.pho)){
+                    mui.toast('手机格式错误！');
+                }else{
+                    that.$http.post(
+                            address+'Index/Login/sms_index',
+                            {phone:that.pho,
+                                code:that.yzm
+                            },
+                            {emulateJSON:true})
+                            .then(function(res){
+                                console.log(res.body)
+                                mui.toast(res.body.msg);
+                                if(res.body.code == 1000){
+                                    sessionStorage.setItem('key', JSON.stringify(res.body.data.token));
+                                    if(window.localStorage){
+                                        var storage=window.localStorage;
+                                        storage.pho = that.pho;
+                                    }
+                                    setTimeout(function(){
+                                        window.location.href = 'index.html';
+                                    },1000)
+                                }
+                            });
+                }
+            }
+        }
+    })
+
+</script>
+</html>

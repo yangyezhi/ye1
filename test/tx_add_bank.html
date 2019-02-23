@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">添加银行卡</h1>
+</header>
+<div id="box" class="mui-content">
+    <select class="mui-btn mui-btn-block select">
+        <option value="item-1">选择开户行</option>
+        <option value="item-2">item-2</option>
+        <option value="item-3">item-3</option>
+        <option value="item-4">item-4</option>
+        <option value="item-5">item-5</option>
+    </select>
+    <div class="mui-input-row bg_w" style="margin: 1px 0">
+        <label>持卡人</label>
+        <input v-model="name" type="text" class="mui-input-clear" placeholder="持卡人姓名">
+    </div>
+    <div class="mui-input-row bg_w">
+        <label>卡号</label>
+        <input v-model="num" type="number" class="mui-input-clear" placeholder="银行卡号">
+    </div>
+    <button @click="sure" type="button" class="mui-btn sub">
+        确定
+    </button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            name:'',
+            num:''
+        },
+        mounted:function(){
+
+
+        },
+        methods:{
+            sure:function(){
+
+            }
+        }
+    })
+</script>
+</html>

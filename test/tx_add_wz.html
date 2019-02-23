@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<div id="box">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">添加支付宝收款码</h1>
+    </header>
+    <div class="mui-content">
+        <div class="card_wz">
+            <div class="ma_post">
+                <img class="img1" src="images/add.png" alt="in">
+                <input type="file" value="" onchange="up(this,'ma_post','img1')">
+            </div>
+            <p>添加支付宝收款码</p>
+            <span class="delete change">更换</span>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+
+        },
+        mounted:function(){
+
+        },
+        methods:{
+            dl:function(){
+
+            }
+        }
+    })
+    function up(e,box,imgs){
+        var file=e.files[0];
+        photoCompress(file,100,$('.'+box)[0],imgs)
+    }
+    function photoCompress(file,w,objDiv,imgs){
+        var ready=new FileReader();
+        ready.readAsDataURL(file);
+        ready.onload=function(){
+            var re=this.result;
+            canvasDataURL(re,w,objDiv,imgs)
+        }
+    }
+    function canvasDataURL(re,w,objDiv,imgs){
+        var newImg=new Image();
+        newImg.src=re;
+        var imgWidth,imgHeight,offsetX=0,offsetY=0;
+        newImg.onload=function(){
+            var img=document.createElement("img");
+            img.src=newImg.src;
+            imgWidth=img.width;
+            imgHeight=img.height;
+            var canvas=document.createElement("canvas");
+            canvas.width=w;
+            canvas.height=w;
+            canvas.setAttribute('class','imgbox')
+            var ctx=canvas.getContext("2d");
+            ctx.clearRect(0,0,w,w);
+            if(imgWidth>imgHeight){
+                imgWidth=w*imgWidth/imgHeight;
+                imgHeight=w;
+                offsetX=-Math.round((imgWidth-w)/2);
+            }else{
+                imgHeight=w*imgHeight/imgWidth;
+                imgWidth=w;
+                offsetY=-Math.round((imgHeight-w)/2);
+            }
+            ctx.drawImage(img,offsetX,offsetY,imgWidth,imgHeight);
+            var base64=canvas.toDataURL("image/jpeg",0.7);
+            if(imgs == 'img1'){
+//                $('.'+imgs).attr('src',base64);
+                $('.'+imgs).attr('src','images/wx_g.png');
+                $('.'+imgs).parents('.card_wz').css({'background-color':'#50B674','color':'#fff','box-shadow':'0px 0px 8px #053F19'})
+            }else if(imgs == 'img2'){
+                $('.'+imgs).attr('src','images/zfb1.png');
+                $('.'+imgs).parents('.card_wz').css({'background-color':'#00A0E9','color':'#fff','box-shadow':'0px 0px 8px #0A394F'})
+            }
+
+        }
+
+    }
+
+</script>
+</html>

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">代售中心</h1>
+
+</header>
+<div id="box">
+    <ul class="count_list pay_type" v-cloak style="position: fixed; top: 43px;">
+        <li v-for="item,index in types" v-bind:class="{active:item.active}" @click="change(index)">{{item.type}}</li>
+    </ul>
+    <div class="mui-content" style="padding-top: 91px;">
+        <div class="buy_box">
+            <div class="order_top goods_l">
+                <div class="img_box">
+                    <img src="images/wx_ma.png" alt=""/>
+                </div>
+                <div class="order_t">
+                    <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                    <p>¥1000.00</p>
+                    <p>¥1000.00</p>
+                </div>
+                <img class="sell" src="images/sell.png" alt=""/>
+            </div>
+            <p class="buy_time">
+                购入时间：2018-11-9 14:09:27</p>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            types:[{type:'销售中',active:true},{type:'已售出',active:false}]
+        },
+        mounted:function(){
+
+
+        },
+        methods:{
+            change:function(a){
+                for(var i in this.types){
+                    this.types[i].active = false;
+                };
+                this.types[a].active = true;
+            }
+        }
+    })
+</script>
+</html>

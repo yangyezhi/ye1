@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <h1 class="mui-title">嘉创</h1>
+    <img class="kf_img" src="images/kufu1.png" alt=""/>
+</header>
+<div id="box" class="mui-content pad_bot">
+    <!--轮播图-->
+    <div id="slider" class="mui-slider banner" >
+        <div class="mui-slider-group mui-slider-loop">
+            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第一张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第二张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第三张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第四张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <img src="images/extend_bg.png">
+            </div>
+        </div>
+        <div class="mui-slider-indicator">
+            <div class="mui-indicator mui-active"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+        </div>
+    </div>
+    <ul class="goods_list pad">
+        <a href="goods_detail.html"><li>
+            <img class="goods_img" src="images/wx_ma.png" alt=""/>
+            <div class="goods_tips">
+                <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                <p><span class="buy_mon">¥1000.00</span><span class="buy_out">已售2000</span></p>
+            </div>
+        </li></a>
+        <li>
+            <img class="goods_img" src="images/wx_ma.png" alt=""/>
+            <div class="goods_tips">
+                <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                <p><span class="buy_mon">¥1000.00</span><span class="buy_out">已售2000</span></p>
+            </div>
+        </li>
+        <li>
+            <img class="goods_img" src="images/wx_ma.png" alt=""/>
+            <div class="goods_tips">
+                <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                <p><span class="buy_mon">¥1000.00</span><span class="buy_out">已售2000</span></p>
+            </div>
+        </li>
+        <li>
+            <img class="goods_img" src="images/wx_ma.png" alt=""/>
+            <div class="goods_tips">
+                <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                <p><span class="buy_mon">¥1000.00</span><span class="buy_out">已售2000</span></p>
+            </div>
+        </li>
+    </ul>
+    <foots ac1="true"></foots>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/conmon.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+
+        },
+        mounted:function(){
+//            mui("#slider").slider({
+//                interval: 1000
+//            });
+
+        },
+        methods:{
+
+        }
+    })
+
+</script>
+</html>

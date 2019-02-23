@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <h1 class="mui-title">代理区</h1>
+    <img class="kf_img" src="images/kufu1.png" alt=""/>
+</header>
+<div id="box" class="mui-content pad_bot">
+    <a class="href_ds" href="agent_buy.html"><img src="images/agent_h.png" alt=""/>
+        <p>代售中心</p></a>
+    <ul class="count_list" v-cloak>
+        <li v-for="item,index in counts" v-bind:class="{active:item.active}" @click="change(index)">{{item.count}}</li>
+    </ul>
+    <div class="order_top goods_l">
+        <img src="images/wx_ma.png" alt=""/>
+        <div class="order_t">
+            <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+            <p>¥1000.00</p>
+            <p>¥1000.00</p>
+        </div>
+    </div>
+    <div class="order_top goods_l">
+        <img src="images/wx_ma.png" alt=""/>
+        <div class="order_t">
+            <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+            <p>¥1000.00</p>
+            <p>¥1000.00</p>
+        </div>
+    </div>
+    <div class="order_top goods_l">
+        <img src="images/wx_ma.png" alt=""/>
+        <div class="order_t">
+            <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+            <p>¥1000.00</p>
+            <p>¥1000.00</p>
+        </div>
+    </div>
+    <div class="order_top goods_l">
+        <img src="images/wx_ma.png" alt=""/>
+        <div class="order_t">
+            <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+            <p>¥1000.00</p>
+            <p>¥1000.00</p>
+        </div>
+    </div>
+    <foots ac2="true"></foots>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/conmon.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            counts:[{count:'1折',active:true},{count:'2折',active:false},{count:'3折',active:false},{count:'4折',active:false},
+                {count:'5折',active:false},{count:'6折',active:false},{count:'7折',active:false},{count:'8折',active:false},{count:'9折',active:false}]
+        },
+        mounted:function(){
+
+        },
+        methods:{
+            change:function(a){
+                for(var i in this.counts){
+                    this.counts[i].active = false;
+                };
+                this.counts[a].active = true;
+            }
+         }
+    })
+    window.onscroll = function () {
+        if($(document).scrollTop() >= 88){
+            $('.count_list').css('position','fixed');
+            $('.count_list').css('top',43);
+        }else{
+            $('.count_list').css('position','inherit');
+        }
+    };
+</script>
+</html>

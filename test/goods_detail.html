@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">商品详情</h1>
+</header>
+<div id="box" class="mui-content content_on pad_bot">
+    <!--轮播图-->
+    <div id="slider" class="mui-slider goods_d" >
+        <div class="mui-slider-group mui-slider-loop">
+            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第一张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第二张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第三张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 第四张 -->
+            <div class="mui-slider-item">
+                <img src="images/extend_bg.png">
+            </div>
+            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <img src="images/extend_bg.png">
+            </div>
+        </div>
+        <img @click="last" class="last" src="images/goods_back.png" alt=""/>
+        <span v-cloak class="mui-badge goods_num">{{num}}/4</span>
+    </div>
+    <div class="goods_tips goods_ts pad">
+        <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+        <p><span class="buy_mon" style="font-size: 0.56rem">¥1000.00</span><span class="buy_out" style="font-size: 0.27rem">已售2000</span></p>
+    </div>
+    <p class="detail_p">————详情————</p>
+    <div class="goods_detail">
+        <img src="images/extend_bg.png" alt=""/>
+        <img src="images/extend_bg.png" alt=""/>
+        <img src="images/extend_bg.png" alt=""/>
+    </div>
+
+    <ul class="goods_foot wids">
+       <li class="kf"><img src="images/kefu2.png" alt=""/><br/>客服</li>
+        <li @click="href">立即购买</li>
+    </ul>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    var box = new Vue({
+                el:'#box',
+                data:{
+                    slider:'',
+                    num:1
+                },
+                mounted:function(){
+                    this.slider = mui('#slider').slider();
+                    $('.mui-bar-nav').hide();
+                },
+                methods:{
+                    last:function(){
+                        this.slider.prevItem();
+//                        slider.nextItem();
+                        this.num = this.slider.getSlideNumber()+1;
+                    },
+                    href:function(){
+                        window.location.href='order.html';
+                    }
+                }
+            })
+//轮播滑动事件
+    document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+        box.num = event.detail.slideNumber+1;
+    });
+
+//屏幕滚动事件
+    window.onscroll = function () {
+        if($(document).scrollTop() == 0){
+            $('.mui-bar-nav').fadeOut();
+        }else{
+            $('.mui-bar-nav').fadeIn();
+        }
+    };
+</script>
+</html>

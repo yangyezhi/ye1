@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">注册</h1>
+</header>
+<div id="box" class="mui-content">
+    <div class="mui-input-group" style="margin-top: 0.3rem">
+        <div class="mui-input-row">
+            <label>用户名</label>
+            <input v-model="name" type="text" class="mui-input-clear" placeholder="请输入用户名">
+        </div>
+        <div class="mui-input-row">
+            <label>登录密码</label>
+            <input v-model="pwd" type="password" class="mui-input-clear" placeholder="请输入6位以上密码">
+        </div>
+        <div class="mui-input-row">
+            <label>交易密码</label>
+            <input v-model="pwd_j" type="password" class="mui-input-clear" placeholder="请输入6位纯数字交易密码">
+        </div>
+    </div>
+
+    <button @click="reg" type="button" class="mui-btn sub">
+        完成
+    </button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            name:'',
+            pwd:'',
+            pwd_j:'',
+            pho:'',
+            yqm:''
+        },
+        mounted:function(){
+            var arr = location.search.substring(1).split(',');
+            this.pho = arr[0];
+            this.yqm = arr[1];
+            console.log(arr)
+        },
+        methods:{
+            reg:function(){
+                console.log(this.name)
+                console.log(this.pwd)
+                console.log(this.pho)
+                console.log(this.yqm)
+                var that = this;
+                if(this.name == ''||this.pwd == ''){
+                    mui.toast('请完善资料！');
+                }else if(!isSix(this.pwd)){
+                    mui.toast('密码格式错误！');
+                }else{
+                    that.$http.post(
+                            address+'Index/Register/add_userInfo',
+                            {phone:that.pho,
+                                nickname:that.name,
+                                password:that.pwd,
+                                jypassword:that.pwd_j,
+                                yqm:that.yqm},
+                            {emulateJSON:true})
+                            .then(function(res){
+//                                console.log(res.body)
+                                mui.toast(res.body.msg);
+                                if(res.body.code == 1000){
+                                    window.location.href = 'login_pwd.html';
+                                }
+                            });
+                }
+            }
+        }
+    })
+
+</script>
+</html>

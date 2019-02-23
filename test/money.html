@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav bg_red">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left white"></a>
+
+    <h1 class="mui-title white">余额</h1>
+</header>
+<div id="box" class="mui-content bg_w">
+    <div class="mon_box">
+        <p><span>¥</span>2000.00</p>
+
+        <p>余额</p>
+        <button @click="href_c" class="m_btn">充值</button>
+        <a href="help.html"><button class="m_btn help">帮助</button></a>
+    </div>
+    <p class="p_det">余额收支明细</p>
+    <div>
+        <div class="charge_record">
+            <div class="record_left">
+                <div>充值到账</div>
+                <div>2019-2-15 13:20:10</div>
+            </div>
+            <div class="record_right red">+1000.00</div>
+        </div>
+        <div class="charge_record">
+            <div class="record_left">
+                <div>充值到账</div>
+                <div>2019-2-15 13:20:10</div>
+            </div>
+            <div class="record_right blue">-1000.00</div>
+        </div>
+
+    </div>
+</div>
+<p class="no_more">-没有更多了-</p>
+
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {},
+        mounted: function () {
+
+
+        },
+        methods: {
+            href_c:function(){
+                window.location.href = 'charge.html';
+            }
+        }
+    })
+
+</script>
+</html>

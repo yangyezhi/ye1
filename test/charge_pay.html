@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link href="css/mui.picker.css" rel="stylesheet" />
+    <link href="css/mui.poppicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">充值</h1>
+</header>
+<div id="box" class="mui-content">
+    <div class="code_box">
+        <p>请使用<span class="red">支付宝</span>扫码支付<span class="red">1000</span>元</p>
+        <img class="code" src="images/wx_ma.png" alt=""/>
+    </div>
+    <button @click="sure" type="button" class="mui-btn sub">上传支付凭证</button>
+    <p class="charge_tips pad">
+        注意事项：<br/>
+        1.请注意核对充值金额，金额错误可能无法到账；<br/>
+        2.注意事项请客户修改和补充。
+    </p>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/conmon.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+
+    new Vue({
+        el:'#box',
+        data:{
+
+        },
+        mounted:function(){
+
+        },
+        methods:{
+            sure:function(){
+                window.location.href = 'charge_proof.html';
+            }
+        }
+    })
+
+</script>
+</html>

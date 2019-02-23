@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">创客区订单</h1>
+
+</header>
+<div id="box">
+    <ul class="count_list" v-cloak style="position: fixed; top: 43px;">
+        <li style="width: 20%;" v-for="item,index in types" v-bind:class="{active:item.active}" @click="change(index)">{{item.type}}</li>
+    </ul>
+    <div class="mui-content" style="padding-top: 91px;">
+        <div @click="window.location.href = 'order_detail.html';" class="list_box">
+            <div class="list_top">
+                <span>下单时间：2019-2-15 16:21:41</span>
+                <span>待付款</span>
+            </div>
+            <div class="order_top bg_w">
+                <img src="images/wx_ma.png" alt=""/>
+                <div class="order_t">
+                    <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                    <p>¥1000.00</p>
+                </div>
+            </div>
+            <div class="list_bot">
+                <button class="active">立即付款</button>
+                <button>取消订单</button>
+            </div>
+        </div>
+        <div class="list_box">
+            <div class="list_top">
+                <span>下单时间：2019-2-15 16:21:41</span>
+                <span>待发货</span>
+            </div>
+            <div class="order_top bg_w">
+                <img src="images/wx_ma.png" alt=""/>
+                <div class="order_t">
+                    <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                    <p>¥1000.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="list_box">
+            <div class="list_top">
+                <span>下单时间：2019-2-15 16:21:41</span>
+                <span>待收货</span>
+            </div>
+            <div class="order_top bg_w">
+                <img src="images/wx_ma.png" alt=""/>
+                <div class="order_t">
+                    <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                    <p>¥1000.00</p>
+                </div>
+            </div>
+            <div class="list_bot">
+                <button class="active">确认收货</button>
+            </div>
+        </div>
+        <div class="list_box">
+            <div class="list_top">
+                <span>下单时间：2019-2-15 16:21:41</span>
+                <span>已完成</span>
+            </div>
+            <div class="order_top bg_w">
+                <img src="images/wx_ma.png" alt=""/>
+                <div class="order_t">
+                    <p>【酒厂直营】泸州老窖 国窖1573 浓香型白酒 52度 500ml 单瓶装</p>
+                    <p>¥1000.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="no_more">-没有更多了-</p>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            types:[{type:'全部',active:true},{type:'待付款',active:false},{type:'待发货',active:false},
+                {type:'待收货',active:false},{type:'已完成',active:false}]
+        },
+        mounted:function(){
+
+
+        },
+        methods:{
+            change:function(a){
+                for(var i in this.types){
+                    this.types[i].active = false;
+                };
+                this.types[a].active = true;
+            }
+        }
+    })
+</script>
+</html>

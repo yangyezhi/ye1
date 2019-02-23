@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/phone_rem.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body class="bg_w">
+<header class="mui-bar mui-bar-nav bg_red">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left white"></a>
+
+    <h1 class="mui-title white">我的团队</h1>
+</header>
+<div id="box" class="mui-content bg_w" style="position: relative;">
+    <div class="extend_deatil pad">
+        <a href="help.html"><span class="mui-badge help_href bg_red">帮助</span></a>
+        <div class="class_live" v-text="live"></div>
+        <ul class="mui-table-view mui-grid-view">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4"><a href="#">
+                <span class="num" v-text="per1">0</span>
+                <div class="mui-media-body type">直推人数</div>
+            </a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4"><a href="#">
+                <span class="num" v-text="per2">0</span>
+                <div class="mui-media-body type">总业绩</div>
+            </a></li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4"><a href="#">
+                <span class="num" v-text="per3">0</span>
+                <div class="mui-media-body type">团队人数</div>
+            </a></li>
+        </ul>
+    </div>
+    <p class="tit">推广奖励明细</p>
+    <p class="nomore">敬请期待</p>
+    <div id="pullrefresh" class="list_contend">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view mui-table-view-chevron">
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <button @click="extend" type="button" class="mui-btn extend_btn">
+        立即推广
+    </button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/isnum.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            per1:'',
+            per2:'',
+            per3:'',
+            live:''
+        },
+        mounted:function(){
+            console.log(session)
+            var that = this;
+            that.$http.get(
+                    address+'Index/Extend/index',
+                    {params: {token:session}})
+                    .then(function(res){
+//                        mui.toast(res.body.msg);
+                        console.log(res.body)
+                        that.per1 = res.body.msg.zt_count||0;
+                        that.per2 = res.body.msg.td_count||0;
+                        that.per3 = res.body.msg.all_amount||0;
+                        that.live = res.body.msg.user_rank_name||'普通会员';
+
+                    });
+        },
+        methods:{
+            extend:function(){
+                if(session == ''){
+                    window.location.href = 'login_pwd.html';
+                }else{
+                    window.location.href = 'junior.html';
+                }
+            }
+        }
+    })
+//    mui.init({
+//        pullRefresh: {
+//            container: '#pullrefresh',
+//            up: {
+//                auto:true,
+//                contentrefresh: '正在加载...',
+//                callback: pullupRefresh
+//            }
+//        }
+//    });
+
+//    var count = 0;
+//    function pullupRefresh() {
+//        setTimeout(function() {
+//            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+//            console.log(count)
+//            $.ajax({
+//                url:address+'Index/Extend/jiangli',
+//                type:'get',
+//                data:{
+//                    token:session,
+//                    p:count
+//                },
+//                success:function(e){
+//                    console.log(e)
+//                }
+//            })
+//        }, 1500);
+//    }
+</script>
+</html>

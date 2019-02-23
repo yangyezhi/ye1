@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*ipad*/
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 76.8px;
+    }
+}
+/*iPhone 6 Plus*/
+@media screen and (max-width: 414px) {
+    html {
+        font-size: 41.4px;
+    }
+}
+/*nexus 6p  华为6p*/
+@media screen and (max-width: 412px) {
+    html {
+        font-size: 41.2px;
+    }
+}
+/*iPhone 6*/
+@media screen and (max-width: 375px) {
+    html {
+        font-size: 37.5px;
+    }
+}
+/*Galaxy S5*/
+@media screen and (max-width: 360px) {
+    html {
+        font-size: 36px;
+    }
+}
+/*iPhone 5*/
+@media screen and (max-width: 320px) {
+    html {
+        font-size: 32px;
+    }
+}
